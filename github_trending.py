@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+import os
 import pandas as pd
 
 # ① スクレイピング
@@ -42,7 +44,8 @@ df_sorted = df.sort_values("本日のスター", ascending=False)
 df_top5 = df_sorted.head(5)
 
 # ⑤ Discord通知
-WEBHOOK_URL = "https://discord.com/api/webhooks/1510747822046056661/bTlGvYVaDw73tdehJMTVCkXvy6c1OU5n0umD2BaVJMZfsL1rlfFj26WW67PSsRf_Vuwt"
+load_dotenv()
+WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
 message_lines = ["**📈 GitHub Trending 上位5件**\n"]
 
